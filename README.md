@@ -4,3 +4,6 @@ Create N Share is a No Code solution which gives users the ability to create any
 # Tech Stack :
 
 HTML, CSS, JS, Bootstrap, Django (MVC) & sqlite3 (later to be migrated either to MySQL or Postgres), Docker, Github Actions.
+
+
+Note : The Scaffold will be pushed asap.
