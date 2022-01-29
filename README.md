@@ -308,8 +308,8 @@ git push origin '<your_branch_name>'
 
 ## Maintainers
 
-	- [Chiraag Kakar](https://github.com/chiraag-kakar)
-	- [Yogesh Jha](https://github.com/hound77)
+- [Chiraag Kakar](https://github.com/chiraag-kakar)
+- [Yogesh Jha](https://github.com/hound77)
  
 	
 ## License
