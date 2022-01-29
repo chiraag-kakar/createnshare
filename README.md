@@ -305,6 +305,13 @@ git push origin '<your_branch_name>'
 
 ---
 
+
+## Maintainers
+
+	- [Chiraag Kakar](https://github.com/chiraag-kakar)
+	- [Yogesh Jha](https://github.com/hound77)
+ 
+	
 ## License
 
 This project is licensed under the MIT License - see the <a href="https://github.com/chiraag-kakar/createnshare/blob/master/LICENSE">LICENSE.md</a> file for details.
