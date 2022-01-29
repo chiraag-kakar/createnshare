@@ -1,9 +1,6 @@
 # create n share
-Create N Share is a No Code solution which gives users the ability to create any type of feature rich survey forms with ease.
 
-
-Note : The Scaffold will be pushed soon.
-
+*Note : The Project Scaffold will be pushed soon.*
 
 ---
 
@@ -19,13 +16,11 @@ Note : The Scaffold will be pushed soon.
 [![](https://img.shields.io/github/stars/chiraag-kakar/createnshare?style=for-the-badge)]()
 <!-- [![](https://img.shields.io/website?style=for-the-badge&url=https://sharenlearn.herokuapp.com)](https://sharenlearn.herokuapp.com) -->
 
-**Create N Share** is a Common Platform for Students & Faculties to upload and share files including all sorts of study material which will be accessible to all the registered members.
+**Create N Share** is a No Code solution which gives users the ability to create any type of feature rich survey forms with ease. 
 
 ### Goal
 
-To create a secure and scalable platform common to both college students and faculties so that they can easily share the resources related to coursework hence reducing the dependency on social media platforms.
-
-In the future, the platform can also serve as an e-library for college students.
+To build a Software-As-A-Service that helps the surveyors get responses in real time. The data can also be exported, sliced and diced to find actionable insights.
 
 ### Tech Stack
 
