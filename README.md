@@ -1,5 +1,5 @@
 # createnshare
-Create N Share is a No Code solution which gives users the ability to create any type of survey with ease.
+Create N Share is a No Code solution which gives users the ability to create any type of feature rich survey forms with ease.
 
 # Tech Stack :
 
