@@ -1,0 +1,17 @@
+*.pyc
+*~
+/.vscode
+__pycache__
+/__pycache__/
+db.sqlite3
+/static
+.DS_Store
+/migrations/
+
+# Virtual Environments
+env/
+myenv/
+virtual/
+v/
+myvenv/
+vir/
