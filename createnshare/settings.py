@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # heroku
 ]
 
 ROOT_URLCONF = 'createnshare.urls'
@@ -88,16 +89,28 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 # }
 
 # Local DB Configuration
-DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("DB_NAME", BASE_DIR / "db.sqlite3"),
-        "USER": os.environ.get("DB_USER", "user"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
-        "HOST": os.environ.get("DB_HOST", "localhost"),
-        "PORT": os.environ.get("DB_PORT", "5432"),
+if os.getenv('GITHUB_WORKFLOW'):
+    DATABASES = {
+        "default": {
+            "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
+            "NAME": os.environ.get("DB_NAME", BASE_DIR / "db.sqlite3"),
+            "USER": os.environ.get("DB_USER", "user"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
+            "HOST": os.environ.get("DB_HOST", "localhost"),
+            "PORT": os.environ.get("DB_PORT", "5432"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
+            "NAME": os.environ.get("DB_NAME", BASE_DIR / "db.sqlite3"),
+            "USER": os.environ.get("DB_USER", "user"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
+            "HOST": os.environ.get("DB_HOST", "localhost"),
+            "PORT": os.environ.get("DB_PORT", "5432"),
+        }
+    }
 
 # Production DB Configuration
 # DATABASES = {}
