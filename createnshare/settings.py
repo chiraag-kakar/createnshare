@@ -112,8 +112,13 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 #         }
 #     }
 # Production DB Configuration
-DATABASES = {}
-DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
+if os.getenv('GITHUB_WORKFLOW'):
+    DATABASES = {}
+    DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
+else:
+    DATABASES = {}
+    DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
+
 
 
 # Password validation
