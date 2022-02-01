@@ -47,9 +47,6 @@ jobs:
       needs: [health-checkup-job]
       if: ${{ github.event_name == 'push' }}
       steps:
-        - name: Docker build
-          run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-
         - uses: actions/checkout@v2
         - uses: akhileshns/heroku-deploy@v3.12.12
           with:
@@ -59,7 +56,8 @@ jobs:
             # healthcheck: "https://[YOUR APP's NAME].herokuapp.com/health"
             # checkstring: "ok"
             # Build Docker image
-        
+        - name: Docker build
+          run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
 
             # Push the Docker image to Heroku Container Registry
         - name: Publish
