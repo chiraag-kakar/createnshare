@@ -21,5 +21,6 @@ RUN pip install -r requirements.txt
 COPY . .
 RUN python manage.py collectstatic --noinput --clear
 
+# EXPOSE 8000
 # Run application
 CMD gunicorn django_heroku.wsgi:application
