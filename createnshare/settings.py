@@ -89,32 +89,31 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 # }
 
 # Local DB Configuration
-if os.getenv('GITHUB_WORKFLOW'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'github-actions',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost',
-            'PORT': '5432'
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
-            'PORT': os.getenv('DB_PORT')
-        }
-    }
-
+# if os.getenv('GITHUB_WORKFLOW'):
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'github-actions',
+#             'USER': 'postgres',
+#             'PASSWORD': 'postgres',
+#             'HOST': 'localhost',
+#             'PORT': '5432'
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': os.getenv('DB_NAME'),
+#             'USER': os.getenv('DB_USER'),
+#             'PASSWORD': os.getenv('DB_PASSWORD'),
+#             'HOST': os.getenv('DB_HOST'),
+#             'PORT': os.getenv('DB_PORT')
+#         }
+#     }
 # Production DB Configuration
-# DATABASES = {}
-# DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
+DATABASES = {}
+DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
 
 
 # Password validation
