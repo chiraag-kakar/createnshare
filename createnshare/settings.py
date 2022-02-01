@@ -89,32 +89,34 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 # }
 
 # Local DB Configuration
-if os.getenv('GITHUB_WORKFLOW'):
-    DATABASES = {
-        "default": {
-            "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
-            "NAME": os.environ.get("DB_NAME", BASE_DIR / "db.sqlite3"),
-            "USER": os.environ.get("DB_USER", "user"),
-            "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
-            "HOST": os.environ.get("DB_HOST", "localhost"),
-            "PORT": os.environ.get("DB_PORT", "5432"),
-        }
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
-            "NAME": os.environ.get("DB_NAME", BASE_DIR / "db.sqlite3"),
-            "USER": os.environ.get("DB_USER", "user"),
-            "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
-            "HOST": os.environ.get("DB_HOST", "localhost"),
-            "PORT": os.environ.get("DB_PORT", "5432"),
-        }
-    }
+# if os.getenv('GITHUB_WORKFLOW'):
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'github-actions',
+#             'USER': 'postgres',
+#             'PASSWORD': 'postgres',
+#             'HOST': 'localhost',
+#             'PORT': '5432'
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': os.getenv('DB_NAME'),
+#             'USER': os.getenv('DB_USER'),
+#             'PASSWORD': os.getenv('DB_PASSWORD'),
+#             'HOST': os.getenv('DB_HOST'),
+#             'PORT': os.getenv('DB_PORT')
+#         }
+#     }
 
 # Production DB Configuration
-# DATABASES = {}
-# DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
+DATABASES = {}
+DATABASES['default'] = env('DATABASE_URL')
+# DATABASES['default'] = 'postgres://nmgosibpspofxx:bf3caa8c2b1a2db913ce11a116ca60d46bccbe5d7ee871c6178e505a03079187@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d4429ul1k862js'
+
 
 
 # Password validation
@@ -157,6 +159,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
