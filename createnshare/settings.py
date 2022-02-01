@@ -114,7 +114,8 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 
 # Production DB Configuration
 DATABASES = {}
-DATABASES['default'] = env('postgres://nmgosibpspofxx:bf3caa8c2b1a2db913ce11a116ca60d46bccbe5d7ee871c6178e505a03079187@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d4429ul1k862js').config(default='DATABASE_URL')
+DATABASES['default'] = env('DATABASE_URL').config(default='DATABASE_URL')
+# DATABASES['default'] = 'postgres://nmgosibpspofxx:bf3caa8c2b1a2db913ce11a116ca60d46bccbe5d7ee871c6178e505a03079187@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d4429ul1k862js'
 
 
 

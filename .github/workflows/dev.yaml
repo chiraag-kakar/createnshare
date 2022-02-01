@@ -32,6 +32,7 @@ jobs:
 
       - name: Run migrations
         run: |
+          export DATABASE_URL=${{ secrets.DATABASE_URL}}
           python manage.py makemigrations --noinput
           python manage.py migrate --noinput
           python manage.py collectstatic --noinput --clear
