@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+import django_heroku
+import environ
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%2ktj$5&th*!v^*5mw)1s6_s1nf)(+p!c%z4^v&ltm5c4p2p0a'
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # heroku
 ]
 
 ROOT_URLCONF = 'createnshare.urls'
@@ -74,12 +81,42 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# Local DB Configuration
+# if os.getenv('GITHUB_WORKFLOW'):
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'github-actions',
+#             'USER': 'postgres',
+#             'PASSWORD': 'postgres',
+#             'HOST': 'localhost',
+#             'PORT': '5432'
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': os.getenv('DB_NAME'),
+#             'USER': os.getenv('DB_USER'),
+#             'PASSWORD': os.getenv('DB_PASSWORD'),
+#             'HOST': os.getenv('DB_HOST'),
+#             'PORT': os.getenv('DB_PORT')
+#         }
+#     }
+
+# Production DB Configuration
+DATABASES = {}
+DATABASES['default'] = env('DATABASE_URL')
+# DATABASES['default'] = 'postgres://nmgosibpspofxx:bf3caa8c2b1a2db913ce11a116ca60d46bccbe5d7ee871c6178e505a03079187@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d4429ul1k862js'
+
 
 
 # Password validation
@@ -122,3 +159,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Activate Django-Heroku.
+django_heroku.settings(locals())
