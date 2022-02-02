@@ -74,6 +74,7 @@ TEMPLATES = [
         },
     },
 ]
+# AUTH_USER_MODEL = "app.User"
 
 WSGI_APPLICATION = 'createnshare.wsgi.application'
 
