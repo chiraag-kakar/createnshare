@@ -35,7 +35,7 @@ jobs:
           python manage.py makemigrations --noinput
           python manage.py migrate --noinput
           python manage.py collectstatic --noinput --clear
-          
+
       - name: Run Tests
         run: |
           python manage.py test app
@@ -56,5 +56,6 @@ jobs:
             heroku_app_name : $HEROKU_APP_NAME
             heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
             heroku_email_address: $HEROKU_EMAIL
-            use_docker: true
+            # use_docker: true
+            use_build_manifest: true
             git_branch: develop
