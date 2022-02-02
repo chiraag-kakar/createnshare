@@ -9,4 +9,4 @@ release:
     command:
         - python manage.py collectstatic --noinput
 run:
-    web: gunicorn books.wsgi
+    web: gunicorn createnshare.wsgi
