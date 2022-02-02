@@ -1,7 +1,5 @@
 # create n share
 
-*Note : The Project Scaffold will be pushed soon.*
-
 ---
 
 <!-- DATABASE_URL = postgres://nmgosibpspofxx:bf3caa8c2b1a2db913ce11a116ca60d46bccbe5d7ee871c6178e505a03079187@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d4429ul1k862js -->
