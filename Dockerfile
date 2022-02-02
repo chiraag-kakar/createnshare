@@ -19,6 +19,8 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
+RUN python manage.py makemigrations
+RUN python manage.py migrate app
 RUN python manage.py collectstatic --noinput --clear
 # EXPOSE 8000
 # Run application
