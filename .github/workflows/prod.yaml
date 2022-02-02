@@ -10,7 +10,7 @@ env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
   HEROKU_APP_NAME: ${{ 'develop-createnshare' }}
   HEROKU_EMAIL: ${{ 'chiraag.kakar.22@gmail.com' }}
- 
+
 jobs:
   health-checkup-job: #Check the healthy by running tests
     runs-on: ubuntu-latest
@@ -41,27 +41,19 @@ jobs:
       - name: Check Syntax #We are just testing the syntax in names app; pycodestyle uses pep8 conventions of max line length of 79 characters while Django recommends 119 characters
         run: pycodestyle --statistics app
   #Before deploy job you would usually have the build job in case you are using docker images
-  deploy-job:
+  heroku_git_deploy_job:
       runs-on: ubuntu-latest
       needs: [health-checkup-job]
       if: ${{ github.event_name == 'push' }}
+      name: Git Deploy job- A job to deploy django app to heroku using git
       steps:
-        - name: Docker build
-          run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-
-        - uses: actions/checkout@v2
-        - uses: akhileshns/heroku-deploy@v3.12.12
-          with:
-            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-            heroku_app_name: $HEROKU_APP_NAME
-            heroku_email: $HEROKU_EMAIL
-            # healthcheck: "https://[YOUR APP's NAME].herokuapp.com/health"
-            # checkstring: "ok"
-            # Build Docker image
-        
-
-            # Push the Docker image to Heroku Container Registry
-        - name: Publish
-          run: |
-            heroku container:push web -a $HEROKU_APP_NAME
-            heroku container:release web -a $HEROKU_APP_NAME
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Deploy django to heroku
+          uses: nyakaz73/heroku-django-deploy@v0.68 
+          with: 
+            heroku_app_name : $HEROKU_APP_NAME
+            heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+            heroku_email_address: $HEROKU_EMAIL
+            use_docker: true
+            git_branch: main
