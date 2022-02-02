@@ -74,7 +74,7 @@ TEMPLATES = [
         },
     },
 ]
-AUTH_USER_MODEL = "app.User"
+# AUTH_USER_MODEL = "app.User"
 
 WSGI_APPLICATION = 'createnshare.wsgi.application'
 
@@ -82,12 +82,12 @@ WSGI_APPLICATION = 'createnshare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Local DB Configuration
 # if os.getenv('GITHUB_WORKFLOW'):
@@ -114,8 +114,8 @@ DATABASES = {
 #     }
 
 # Production DB Configuration
-# DATABASES = {}
-# DATABASES['default'] = env('DATABASE_URL')
+DATABASES = {}
+DATABASES['default'] = env('DATABASE_URL')
 # DATABASES['default'] = 'postgres://nmgosibpspofxx:bf3caa8c2b1a2db913ce11a116ca60d46bccbe5d7ee871c6178e505a03079187@ec2-34-205-46-149.compute-1.amazonaws.com:5432/d4429ul1k862js'
 
 
