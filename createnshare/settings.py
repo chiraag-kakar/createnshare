@@ -36,6 +36,11 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+  'app_labels': ["app"],
+}
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -74,7 +80,7 @@ TEMPLATES = [
         },
     },
 ]
-# AUTH_USER_MODEL = "app.User"
+# AUTH_USER_MODEL = "app.UserProfile"
 
 WSGI_APPLICATION = 'createnshare.wsgi.application'
 
